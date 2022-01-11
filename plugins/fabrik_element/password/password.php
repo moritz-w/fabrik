@@ -296,6 +296,9 @@ class PlgFabrik_ElementPassword extends PlgFabrik_Element
 		JText::script('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS');
 		JText::script('PLG_ELEMENT_PASSWORD_MIN_UPPERCASE');
 		JText::script('PLG_ELEMENT_PASSWORD_MIN_LOWERCASE');
+		JText::script('PLG_ELEMENT_PASSWORD_MATCH');
+		JText::script('PLG_ELEMENT_PASSWORD_DONT_MATCH');
+		JText::script('PLG_ELEMENT_PASSWORD_ONE_OF');
 
 		return array('FbPassword', $id, $opts);
 	}

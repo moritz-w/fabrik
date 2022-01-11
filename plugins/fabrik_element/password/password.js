@@ -36,7 +36,7 @@ define(['jquery', 'fab/element'], function (jQuery, FbElement) {
 
             this.pwRequirementMinLenText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_LENGTH') + ': ' + this.pwMinLen;
             this.pwRequirementMinIntsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_INTEGERS') + ': ' + this.pwMinInts;
-            this.pwRequirementMinSymbolsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') + ': ' + this.pwMinSymbols + ' (one of: @$!%*#?&)';
+            this.pwRequirementMinSymbolsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') + ': ' + this.pwMinSymbols + ' (: ' + Joomla.JText._('PLG_ELEMENT_PASSWORD_ONE_OF') + ' @$!%*#?&)';
             this.pwRequirementMinUppercaseText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_UPPERCASE') + ': ' + this.pwMinUppercase;
             this.pwRequirementMinLowercaseText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_LOWERCASE') + ': ' + this.pwMinLowercase;
 
@@ -54,6 +54,9 @@ define(['jquery', 'fab/element'], function (jQuery, FbElement) {
             if (this.getConfirmationField().get('value') === '') {
                 this.getConfirmationField().value = this.element.value;
             }
+            this.getConfirmationField().addEvent('keyup', function (e) {
+                this.passwordChanged(e);
+            }.bind(this));
 
             Fabrik.addEvent('fabrik.form.doelementfx', function(form, method, id, groupfx) {
                 if (form === this.form && id === this.strElement)
@@ -89,6 +92,7 @@ define(['jquery', 'fab/element'], function (jQuery, FbElement) {
         passwordChanged: function () {
             
             var pwd = this.element;
+            var pwd_check = this.getConfirmationField();
             var html = '';
             
             /* Update the password requirements indicator */
@@ -142,9 +146,16 @@ define(['jquery', 'fab/element'], function (jQuery, FbElement) {
                 while(regexExpr.test(pwd.value)) count++;
 
                 if (count >= this.pwMinLowercase) {
-                    html += '<span style="color: #10D23E;"><span class="icon-checkmark"> </span> ' + this.pwRequirementMinLowercaseText + '</span>';
+                    html += '<span style="color: #10D23E;"><span class="icon-checkmark"> </span> ' + this.pwRequirementMinLowercaseText + '</span><br/>';
                 } else {
-                    html += '<span style="color: #DB1717;"><span class="icon-cancel-2"> </span> ' + this.pwRequirementMinLowercaseText + '</span>';
+                    html += '<span style="color: #DB1717;"><span class="icon-cancel-2"> </span> ' + this.pwRequirementMinLowercaseText + '</span><br/>';
+                }
+
+                // check if passwords match
+                if (pwd.value != '' && pwd_check.value == pwd.value) {
+                    html += '<span style="color: #10D23E;"><span class="icon-checkmark"> </span> ' + Joomla.JText._('PLG_ELEMENT_PASSWORD_MATCH') + '</span>';
+                } else {
+                    html += '<span style="color: #DB1717;"><span class="icon-cancel-2"> </span> ' + Joomla.JText._('PLG_ELEMENT_PASSWORD_DONT_MATCH') + '</span>';
                 }
 
                 this.pwRequirementsIndicator.set('html', html);

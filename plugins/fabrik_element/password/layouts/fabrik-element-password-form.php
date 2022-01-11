@@ -52,7 +52,7 @@ if ($d->showPasswordRequirements) :
 		</span><br/>
 
 		<span style="color: #DB1717;"><span class="icon-cancel-2"> </span>
-			<?php echo FText::_('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') . ": " . $d->passwordMinSymbols . " (one of: @$!%*#?&)"; ?>
+			<?php echo FText::_('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') . ": " . $d->passwordMinSymbols . " (" . FText::_('PLG_ELEMENT_PASSWORD_ONE_OF') . ": @$!%*#?&)"; ?>
 		</span><br/>
 
 		<span style="color: #DB1717;"><span class="icon-cancel-2"> </span>
@@ -61,6 +61,10 @@ if ($d->showPasswordRequirements) :
 
 		<span style="color: #DB1717;"><span class="icon-cancel-2"> </span>
 			<?php echo FText::_('PLG_ELEMENT_PASSWORD_MIN_LOWERCASE') . ": " . $d->passwordMinLowercase; ?>
+		</span><br/>
+
+		<span style="color: #DB1717;"><span class="icon-cancel-2"> </span>
+			<?php echo FText::_('PLG_ELEMENT_PASSWORD_DONT_MATCH') ?>
 		</span>
 
 	</div>
