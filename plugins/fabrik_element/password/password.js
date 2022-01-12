@@ -36,7 +36,7 @@ define(['jquery', 'fab/element'], function (jQuery, FbElement) {
 
             this.pwRequirementMinLenText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_LENGTH') + ': ' + this.pwMinLen;
             this.pwRequirementMinIntsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_INTEGERS') + ': ' + this.pwMinInts;
-            this.pwRequirementMinSymbolsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') + ': ' + this.pwMinSymbols + ' (: ' + Joomla.JText._('PLG_ELEMENT_PASSWORD_ONE_OF') + ' @$!%*#?&)';
+            this.pwRequirementMinSymbolsText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_SYMBOLS') + ': ' + this.pwMinSymbols + ' (' + Joomla.JText._('PLG_ELEMENT_PASSWORD_ONE_OF') + ': @$!%*#?&)';
             this.pwRequirementMinUppercaseText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_UPPERCASE') + ': ' + this.pwMinUppercase;
             this.pwRequirementMinLowercaseText = Joomla.JText._('PLG_ELEMENT_PASSWORD_MIN_LOWERCASE') + ': ' + this.pwMinLowercase;
 
